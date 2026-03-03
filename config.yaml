@@ -1,0 +1,226 @@
+board: 6 Pack
+name: 6 Pack StepStick XYZABC
+stepping:
+  engine: I2S_STREAM
+  idle_ms: 250
+  pulse_us: 4
+  dir_delay_us: 6
+  disable_delay_us: 0
+
+axes:
+  shared_stepper_disable_pin: NO_PIN
+  x:
+    steps_per_mm: 320
+    max_rate_mm_per_min: 4000
+    acceleration_mm_per_sec2: 75
+    max_travel_mm: 750
+    soft_limits: false
+    homing:
+      cycle: 1
+      positive_direction: false
+      mpos_mm: 0
+      feed_mm_per_min: 25
+      seek_mm_per_min: 100
+      settle_ms: 250
+      seek_scaler: 1.100
+      feed_scaler: 1.100
+
+    motor0:
+      limit_neg_pin: NO_PIN
+      limit_pos_pin: NO_PIN
+      limit_all_pin: gpio.33:low:pu
+      hard_limits: true
+      pulloff_mm: 1
+      stepstick:
+        ms3_pin: i2so.3
+        step_pin: I2SO.2
+        direction_pin: I2SO.1
+        disable_pin: I2SO.0
+
+  y:
+    steps_per_mm: 320
+    max_rate_mm_per_min: 4000
+    acceleration_mm_per_sec2: 75
+    max_travel_mm: 450
+    soft_limits: false
+    homing:
+      cycle: 1
+      positive_direction: true
+      mpos_mm: 0
+      feed_mm_per_min: 25
+      seek_mm_per_min: 100
+      settle_ms: 250
+      seek_scaler: 1.100
+      feed_scaler: 1.100
+
+    motor0:
+      limit_neg_pin: NO_PIN
+      limit_pos_pin: NO_PIN
+      limit_all_pin: gpio.32:low
+      hard_limits: true
+      pulloff_mm: 1
+      stepstick:
+        ms3_pin: i2so.6
+        step_pin: I2SO.5
+        direction_pin: I2SO.4
+        disable_pin: I2SO.7
+
+    motor1:
+      limit_neg_pin: NO_PIN
+      limit_pos_pin: NO_PIN
+      limit_all_pin: gpio.35:low
+      hard_limits: true
+      pulloff_mm: 1
+      stepstick:
+        ms3_pin: i2so.11
+        step_pin: I2SO.10
+        direction_pin: I2SO.9:low
+        disable_pin: I2SO.8
+
+  z:
+    steps_per_mm: 320
+    max_rate_mm_per_min: 3000
+    acceleration_mm_per_sec2: 125
+    max_travel_mm: 150
+    soft_limits: false
+    homing:
+      cycle: 1
+      positive_direction: true
+      mpos_mm: 0
+      feed_mm_per_min: 25
+      seek_mm_per_min: 800
+      settle_ms: 250
+      seek_scaler: 1.100
+      feed_scaler: 1.100
+
+    motor0:
+      limit_neg_pin: NO_PIN
+      limit_pos_pin: NO_PIN
+      limit_all_pin: gpio.16:low:pu
+      hard_limits: true
+      pulloff_mm: 3
+      stepstick:
+        ms3_pin: i2so.14
+        step_pin: I2SO.13
+        direction_pin: I2SO.12
+        disable_pin: I2SO.15
+
+  a:
+    steps_per_mm: 800
+    max_rate_mm_per_min: 5000
+    acceleration_mm_per_sec2: 100
+    max_travel_mm: 960
+    soft_limits: false
+    homing:
+      cycle: -1
+      positive_direction: false
+      mpos_mm: 150
+      feed_mm_per_min: 25
+      seek_mm_per_min: 100
+      settle_ms: 250
+      seek_scaler: 1.100
+      feed_scaler: 1.100
+
+    motor0:
+      limit_neg_pin: NO_PIN
+      limit_pos_pin: NO_PIN
+      limit_all_pin: NO_PIN
+      hard_limits: false
+      pulloff_mm: 3
+      stepstick:
+        ms3_pin: i2so.19
+        step_pin: I2SO.18
+        direction_pin: I2SO.17
+        disable_pin: I2SO.16
+
+  # b:
+  #   steps_per_mm: 800
+  #   max_rate_mm_per_min: 5000
+  #   acceleration_mm_per_sec2: 100
+  #   max_travel_mm: 200
+  #   soft_limits: false
+  #   homing:
+  #     cycle: -1
+  #     positive_direction: false
+  #     mpos_mm: 150
+  #     feed_mm_per_min: 25
+  #     seek_mm_per_min: 800
+  #     settle_ms: 250
+  #     seek_scaler: 1.100
+  #     feed_scaler: 1.100
+
+  #   motor0:
+  #     limit_neg_pin: NO_PIN
+  #     limit_pos_pin: NO_PIN
+  #     limit_all_pin: NO_PIN
+  #     hard_limits: false
+  #     pulloff_mm: 3
+  #     stepstick:
+  #       ms3_pin: i2so.22
+  #       step_pin: I2SO.21
+  #       direction_pin: I2SO.20
+  #       disable_pin: I2SO.23
+
+i2so:
+  bck_pin: gpio.22
+  data_pin: gpio.21
+  ws_pin: gpio.17
+
+spi:
+  miso_pin: gpio.19
+  mosi_pin: gpio.23
+  sck_pin: gpio.18
+
+sdcard:
+  card_detect_pin: NO_PIN
+  cs_pin: gpio.5
+
+control:
+  safety_door_pin: NO_PIN
+  reset_pin: NO_PIN
+  feed_hold_pin: gpio.36
+  cycle_start_pin: NO_PIN
+  macro0_pin: NO_PIN
+  macro1_pin: NO_PIN
+  macro2_pin: NO_PIN
+  macro3_pin: NO_PIN
+# coolant:
+#   flood_pin: i2so.24
+#   mist_pin: gpio.4
+#   delay_ms: 0
+
+probe:
+  pin: gpio.34:low
+  check_mode_start: true
+
+macros:
+  startup_line0:
+  startup_line1:
+  macro0: $SD/Run=test.nc
+  macro1: $SD/Run=test.nc
+  macro2: $SD/Run=test.nc
+  macro3: $SD/Run=test.nc
+
+start:
+  must_home: false
+
+uart1:
+  txd_pin: gpio.2
+  rxd_pin: gpio.15
+  baud: 9600
+  mode: 8N1
+
+ModbusVFD:
+  uart_num: 1
+  modbus_id: 1
+  model: H100
+  spinup_ms: 12000
+  spindown_ms: 12000
+  tool_num: 0
+  cw_cmd: 05 00 49 ff 00 > 05 00 49 ff 00
+  ccw_cmd: 05 00 4a ff 00 > 05 00 4a ff 00
+  off_cmd: 05 00 4b ff 00 > 05 00 4b ff 00
+  set_rpm_cmd: 06 02 01 rpm*10/60  > echo
+  get_max_rpm_cmd: 03 00 05 00 01 > 03 02 maxrpm*60/10
+  get_min_rpm_cmd: 03 00 0b 00 01 > 03 02 minrpm*60/10
+  get_rpm_cmd: 03 02 20 00 01 > 03 02 rpm*60/10
